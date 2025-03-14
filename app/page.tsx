@@ -1,103 +1,193 @@
-import Image from "next/image";
+"use client";
+import { useEffect, useState } from "react";
+import { motion } from "framer-motion";
+import { useRouter } from "next/navigation";
+import localFont from 'next/font/local';
+import Image from 'next/image';
+
+const satoshi = localFont({
+  src: [
+    {
+      path: '../public/fonts/Satoshi-Regular.otf',
+      weight: '400',
+      style: 'normal',
+    },
+    {
+      path: '../public/fonts/Satoshi-Medium.otf',
+      weight: '500',
+      style: 'normal',
+    },
+    {
+      path: '../public/fonts/Satoshi-Bold.otf',
+      weight: '700',
+      style: 'normal',
+    },
+  ],
+  variable: '--font-satoshi',
+});
+
+const FEATURE_CARDS = [
+  {
+    step: "💭",
+    title: "share your vision",
+    description: "drop your side project idea, no matter how rough"
+  },
+  {
+    step: "🤔",
+    title: "get unstuck",
+    description: "ai helps you break through creative blocks"
+  },
+  {
+    step: "✨",
+    title: "level up",
+    description: "transform your ideas into something amazing"
+  }
+] as const;
 
 export default function Home() {
-  return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm/6 text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-[family-name:var(--font-geist-mono)] font-semibold">
-              app/page.tsx
-            </code>
-            .
-          </li>
-          <li className="tracking-[-.01em]">
-            Save and see your changes instantly.
-          </li>
-        </ol>
+  const router = useRouter();
+  const [user, setUser] = useState(null);
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
+  return (
+    <div className="min-h-screen bg-white">
+      {/* Hero Section */}
+      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 pt-16 pb-12">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+          {/* Left Column - Text Content */}
+          <motion.div
+            initial={{ opacity: 0, x: -20 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.6 }}
           >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
+            <div className="mb-8">
+              <div className="inline-block bg-gray-50 rounded-lg px-4 py-2 text-gray-600 text-sm">
+                ✨ for the side project hustlers
+              </div>
+            </div>
+
+            <h1 className="text-4xl font-medium mb-4">
+              <span className="bg-gradient-to-r from-yellow-400 via-pink-500 to-blue-600 bg-clip-text text-transparent font-bold">
+                venn
+              </span>
+              <span className="text-gray-800"> | your creative companion</span>
+            </h1>
+            
+            <p className="text-lg text-gray-600 mb-6">
+              the AI-powered space where your side projects come to life, helping you think bigger and create better
+            </p>
+          </motion.div>
+
+          {/* Right Column - Illustration */}
+          <motion.div
+            initial={{ opacity: 0, x: 20 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.6 }}
+            className="relative"
+          >
+            <Image 
+              src="/logos/logo-1.png" 
+              alt="spark illustration" 
+              width={600} 
+              height={600} 
+              className="w-full h-auto"
+              priority
             />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+          </motion.div>
         </div>
-      </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
+      </div>
+
+      {/* Experiments Section */}
+      <div className="bg-gray-50/50 py-16">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            className="text-center mb-12"
+          >
+            <h2 className="text-2xl font-medium mb-3">current experiments</h2>
+          </motion.div>
+
+          {/* Experiment Card */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+            className="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden hover:shadow-md transition-all"
+          >
+            <div className="p-6">
+              <div className="flex items-start justify-between">
+                <div>
+                  <div className="text-sm text-gray-500 mb-2">01</div>
+                  <h3 className="text-xl font-medium mb-2">spark</h3>
+                  <p className="text-gray-600 mb-4">
+                    an AI-powered dialogue system that helps you evolve your ideas through thoughtful conversation with multiple personas
+                  </p>
+                </div>
+                <motion.button
+                  className="bg-black text-white px-4 py-2 rounded-lg text-sm font-medium hover:bg-gray-800 transition-all"
+                  whileHover={{ scale: 1.02 }}
+                  whileTap={{ scale: 0.98 }}
+                  onClick={() => router.push("/spark")}
+                >
+                  try it out
+                </motion.button>
+              </div>
+
+              <div className="mt-6 grid grid-cols-3 gap-4">
+                <div className="text-center p-3 bg-gray-50 rounded-lg">
+                  <span className="block text-2xl mb-1">💭</span>
+                  <span className="text-sm text-gray-600">share your idea</span>
+                </div>
+                <div className="text-center p-3 bg-gray-50 rounded-lg">
+                  <span className="block text-2xl mb-1">🤔</span>
+                  <span className="text-sm text-gray-600">get challenged</span>
+                </div>
+                <div className="text-center p-3 bg-gray-50 rounded-lg">
+                  <span className="block text-2xl mb-1">✨</span>
+                  <span className="text-sm text-gray-600">make it better</span>
+                </div>
+              </div>
+            </div>
+          </motion.div>
+
+          {/* Coming Soon Card */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.4 }}
+            className="mt-6 bg-gray-50 rounded-2xl border border-gray-100 p-6 text-center"
+          >
+            <p className="text-gray-500">more coming soon...</p>
+          </motion.div>
+        </div>
+      </div>
+
+      {/* Community Section */}
+      <div className="py-16">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <motion.div
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            transition={{ duration: 0.6 }}
+            className="max-w-2xl mx-auto"
+          >
+            <p className="text-base text-gray-600 mb-6">
+            built for thinkers, makers, and curious minds
+            </p>
+
+            {!user && (
+              <motion.button
+                className="bg-black text-white px-6 py-3 rounded-lg text-base hover:bg-gray-800 transition-all"
+                whileHover={{ scale: 1.02 }}
+                onClick={() => router.push("https://discord.gg/P4s48QJ5xK")}
+              >
+                join the community
+              </motion.button>
+            )}
+          </motion.div>
+        </div>
+      </div>
     </div>
   );
 }

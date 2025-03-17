@@ -32,7 +32,7 @@ const Menu = () => {
           whileHover="hover"
           className="text-gray-600 hover:text-gray-800 px-3 py-1 rounded-md text-sm font-medium"
         >
-          <a href="/spark">spark</a>
+          <a href="https://ship.vennlabs.io">ship</a>
         </motion.button>
       </div>
 

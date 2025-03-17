@@ -73,7 +73,7 @@ export default function Home() {
             </h1>
             
             <p className="text-lg text-gray-600 mb-6">
-              the AI-powered space where your side projects come to life, helping you think bigger and create better
+              where your side projects come to life
             </p>
           </motion.div>
 
@@ -108,33 +108,71 @@ export default function Home() {
             <h2 className="text-2xl font-medium mb-3">current experiments</h2>
           </motion.div>
 
-          {/* Experiment Card */}
+          {/* Ship Card */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.2 }}
+            transition={{ duration: 0.6, delay: 0.1 }}
             className="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden hover:shadow-md transition-all"
           >
             <div className="p-6">
               <div className="flex items-start justify-between">
                 <div>
                   <div className="text-sm text-gray-500 mb-2">01</div>
+                  <h3 className="text-xl font-medium mb-2">ship</h3>
+                  <p className="text-gray-600 mb-4">
+                    gamify your side project journey with daily streaks, public commitments, and a supportive community cheering you on
+                  </p>
+                </div>
+                <motion.button
+                  className="bg-black text-white px-6 py-2 rounded-lg text-sm font-medium hover:bg-gray-800 transition-all whitespace-nowrap"
+                  whileHover={{ scale: 1.02 }}
+                  whileTap={{ scale: 0.98 }}
+                  onClick={() => router.push("/ship")}
+                >
+                  start shipping
+                </motion.button>
+              </div>
+
+              <div className="mt-6 grid grid-cols-3 gap-4">
+                <div className="text-center p-3 bg-gray-50 rounded-lg">
+                  <span className="block text-2xl mb-1">🔥</span>
+                  <span className="text-sm text-gray-600">daily streaks</span>
+                </div>
+                <div className="text-center p-3 bg-gray-50 rounded-lg">
+                  <span className="block text-2xl mb-1">🎯</span>
+                  <span className="text-sm text-gray-600">public goals</span>
+                </div>
+                <div className="text-center p-3 bg-gray-50 rounded-lg">
+                  <span className="block text-2xl mb-1">👥</span>
+                  <span className="text-sm text-gray-600">community</span>
+                </div>
+              </div>
+            </div>
+          </motion.div>
+
+          {/* Spark Card - Coming Soon */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+            className="mt-6 bg-gray-50 rounded-2xl border border-gray-100 overflow-hidden"
+          >
+            <div className="p-6">
+              <div className="flex items-start justify-between">
+                <div>
+                  <div className="text-sm text-gray-500 mb-2">02</div>
                   <h3 className="text-xl font-medium mb-2">spark</h3>
                   <p className="text-gray-600 mb-4">
                     an AI-powered dialogue system that helps you evolve your ideas through thoughtful conversation with multiple personas
                   </p>
                 </div>
-                <motion.button
-                  className="bg-black text-white px-4 py-2 rounded-lg text-sm font-medium hover:bg-gray-800 transition-all"
-                  whileHover={{ scale: 1.02 }}
-                  whileTap={{ scale: 0.98 }}
-                  onClick={() => router.push("/spark")}
-                >
-                  try it out
-                </motion.button>
+                <div className="bg-gray-100 text-gray-500 px-4 py-2 rounded-lg text-sm font-medium">
+                  coming soon
+                </div>
               </div>
 
-              <div className="mt-6 grid grid-cols-3 gap-4">
+              <div className="mt-6 grid grid-cols-3 gap-4 opacity-50">
                 <div className="text-center p-3 bg-gray-50 rounded-lg">
                   <span className="block text-2xl mb-1">💭</span>
                   <span className="text-sm text-gray-600">share your idea</span>
